@@ -1,0 +1,5 @@
+.venv
+data/
+notebooks/data
+kaggle.yml
+kernel-metadata.json
