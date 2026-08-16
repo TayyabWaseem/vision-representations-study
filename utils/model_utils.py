@@ -5,10 +5,10 @@ import types
 import torch
 
 def freeze_backbone_except(model, keep_trainable="fc"):
-    """ For freezing the remainder of the model """
-    for param in model.paramters():
-        param.requres_grad = False
-    for param in model.keep_trainable.parameters():
+    """Freeze all params, then unfreeze only the named submodule."""
+    for param in model.parameters():
+        param.requires_grad = False
+    for param in getattr(model, keep_trainable).parameters():
         param.requires_grad = True
     return model
 
