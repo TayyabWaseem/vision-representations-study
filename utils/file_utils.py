@@ -1,6 +1,6 @@
 # utils/file_utils.py
 
-import Path
+from pathlib import Path
 
 def save_log(out_dir, filename, text):
     """ Saving logs to the results directory """
