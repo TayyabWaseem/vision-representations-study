@@ -42,3 +42,30 @@ def evaluate(model, loader, device):
             correct += (preds == labels).sum().item()
             total += labels.size(0)
     return correct / total
+
+def train_model(model, train_loader, val_loader, optimizer, criterion, device, epochs=5, log_prefix=""):
+    """ Trains the Model and returns loss history"""
+    model = model.to(device)
+    history = []
+
+    for epoch in range(1, epochs + 1):
+        model.train()
+        current_loss = 0.0
+
+        for images, labels in train_loader:
+            images, labels = images.to(device), labels.to(device)
+
+            optimizer.zero_grad()
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            current_loss += loss.item()
+
+        avg_loss = current_loss / len(train_loader)
+        val_acc = evaluate(model, val_loader, device)
+        print(f"{log_prefix}Epoch {epoch}/{epochs} - Avg Loss: {avg_loss:.4f} - Val Acc: {val_acc*100:.2f}%")
+        history.append((epoch, avg_loss, val_acc))
+
+    return history
