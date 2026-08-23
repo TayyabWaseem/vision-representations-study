@@ -3,3 +3,5 @@ data/
 notebooks/data
 kaggle.yml
 kernel-metadata.json
+notes.txt
+*.pyc

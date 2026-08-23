@@ -1,4 +1,19 @@
-matplotlib
-pandas
+# PyTorch Core
 torch
 torchvision
+
+# Data Science & Math
+numpy
+scipy
+scikit-learn
+
+# Visualization
+matplotlib
+
+# Utilities
+tqdm
+
+# OpenAI CLIP and its dependencies
+ftfy
+regex
+git+https://github.com/openai/CLIP.git
